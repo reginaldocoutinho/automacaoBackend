@@ -89,6 +89,6 @@ Entao('esse funcionario sera deletado do sistema') do
     expect(@delete_employee.msg).to eql 'OK'
     expect(@delete_employee["status"]).to eql 'success'
     expect(@delete_employee["data"]).to eql '27'
-    expect(@delete_employee["message"]).to eql 'Successfully! Record has been deleted.'
+    expect(@delete_employee["message"]).to eql 'Successfully! Record has been deleted'
    
 end
