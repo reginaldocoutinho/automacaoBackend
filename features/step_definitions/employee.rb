@@ -44,3 +44,30 @@ Entao('esse funcionario sera cadastrado') do
   expect(@create_employee['data']["employee_name"]).to eql 'Harry'
   
 end
+
+# Terceiro cenário testando a tag html PUT
+
+Dado('que o usuario altere uma informacao de funcionario') do
+  #@get_employee = HTTParty.get('http://dummy.restapiexample.com/api/v1/employees', :headers => {'Content-Type': 'application/json'})  
+  #puts @get_employee['data'][0]['id']
+  @put_url = 'https://dummy.restapiexample.com/api/v1/update/10'
+end
+
+Quando('ele enviar as novas informacoes') do
+  @update_employee = HTTParty.put(@put_url, :headers => {'Content-Type': 'application/json'},body:{
+    "employee_name": "Alberto",
+    "employee_salary": 100,
+    "employee_age": 40,
+    "profile_image": ""
+}.to_json)
+  puts(@update_employee)
+end
+
+Entao('as informacoes serao alterados') do
+    expect(@update_employee.code).to eql (200)
+    expect(@update_employee.msg).to eql 'OK'
+    expect(@update_employee["status"]).to eql 'success'
+    expect(@update_employee["message"]).to eql 'Successfully! Record has been updated.'
+   # expect(@uptade_employee["data"]["employee_name"]).to eql 'Alberto'
+    
+end
